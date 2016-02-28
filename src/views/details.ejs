@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%=post.name%></title>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/speakingurl/9.0.0/speakingurl.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				// var mySlug = createSlug();
+				// console.log(getSlug("NGuyễn Minh Chiến "));
+			})
+		</script>
+	</head>
+	<body ng-app="myApp">
+		<!-- Modules -->
+		<script src="/js/app.js"></script>
+		<!-- <div class="container-fluid"> -->
+		<div class="container">
+			
+			<%- include('includes/header.ejs')%>
+			
+			<%- include('includes/box-left.ejs')%>
+			
+			<div id="detail" class="col-sm-12 col-md-6 box">
+				<div class="panel panel-default">
+					<div>
+						<ul class="breadcrumb details"  style="border-bottom: 1px solid #ddd;">
+							<li><a href="/">Trang chủ</a></li>
+							<li class="active"><%=post.name%></li>
+						</ul>
+					</div>
+					<div class="panel-body">
+						<div class="col-xs-10 col-sm-4 col-md-4 pull-left" style="text-align: center;">
+							<img src="/images/<%=post.slug%>.jpg" style="margin:3px auto;" >
+							<button type="button" class="btn btn-primary btn-block">Theo dõi truyện</button>
+						</div>
+						<div class="col-xs-12 col-sm-8 col-md-8 pull-right">
+							<h2><%=post.name%></h2>
+							<p>Tác giả: <%- post.author.join(', ')%></p>
+							<p>Thể loại: <%for(var i =0 ; i< genres.length; i++){%>
+								<a href="/danh-sach/<%=genres_slug[i]%>"><%=genres[i]%></a>
+								<%}%>
+							</p>
+							<p>Trạng thái: <%=post.status%></p>
+							<p>Nội dung:
+								<button data-toggle="collapse" data-target="#demo" class="pull-right" ng-click="count = count + 1" ng-init="count=0">
+									<span ng-if="count%2==0">Thu nhỏ</span>
+									<span ng-if="count%2==1">Xem thêm</span>
+								</button>
+							</p>
+							<div id="demo" class="collapse in">
+								<%=post.summary%>
+							</div>
+						</div>
+						
+						
+					</div>
+				</div>
+				<div  class="panel panel-default">
+					<div class="panel-heading">
+						Danh sách chương
+					</div>
+					<div id="chap" class="panel-body">
+						<%var chap = post.chapter%>
+						<%for(var i=chap.length -1 ; i>=0; i--){%>
+						<p><a href="/doc-truyen/<%=chap[i].slug%>"><%=chap[i].name%></a>
+							<%myDate = new Date(1000*chap[i].id);%>
+							<span class="pull-right" style="margin:0 3px;"><%-myDate.toLocaleDateString("vn-VN")%></span>
+						</p>
+						<%}%>
+					</div>
+				</div>
+				</div><!-- end box center-->
+				
+				<%- include('includes/box-right.ejs')%>
+			</div>
+			<!-- Controllers -->
+			<script src="/js/Controller/genresController.js"></script>
+			<!-- Filters -->
+			<script src="/js/Filters/slugFilter.js"></script>
+		</body>
+	</html>

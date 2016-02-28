@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%=title%></title>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="imgs/favicon.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/speakingurl/9.0.0/speakingurl.min.js"></script>
+		<script>
+			$(document).ready(function(){
+			
+			});
+		</script>
+	</head>
+	<body ng-app="myApp">
+		<!-- Modules -->
+		<script src="/js/app.js"></script>
+		<!-- <div class="container-fluid"> -->
+		<div class="container">
+			<%- include('includes/header.ejs')%>
+			<div class="col-sm-12 col-md-8 box">
+				<div class="panel panel-default" ng-controller="randomController">
+					<div class="panel-heading"><strong>Giới thiệu truyện</strong></div>
+					<div class="panel-body">
+						<div style="float:left" class ="col-xs-4">
+							<a ng-href="/{{itemRandom.slug}}"><img ng-src="/images/{{itemRandom.slug}}.jpg" width="100%"></a>
+						</div>
+						<h4><a ng-href="/{{itemRandom.slug}}">{{itemRandom.name}}</a></h4>
+						<p>Thể loại: <span ng-repeat="genre in itemRandom.genres"><a ng-href="/danh-sach/the-loai/{{genre | slug}}"> {{genre}}</a></span></p>
+						<p>Nội dung: <br></p>
+						<p>{{itemRandom.summary}}</p>
+						<p><a ng-href="/doc-truyen/{{itemRandom.lastChap.name | slug}}">{{itemRandom.lastChap.name}}</a></p>
+					</div>
+				</div>
+			</div>
+			
+			<div id="fanpage" class="col-sm-12 col-md-4 hidden-xs hidden-sm" style="padding-right=0;">
+				<div class="panel panel-default">
+					<div class="panel-heading"><strong>Fanpage</strong></div>
+					<div class="panel-body">
+						<p>Chưa nghĩ ra :)))</p>
+					</div>
+				</div>
+			</div>
+			<%- include('includes/sideshow.ejs')%>
+			<%- include('includes/box-left.ejs')%>
+			
+			<div class="col-sm-12 col-md-6 box" ng-controller="postController">
+				<div class="panel panel-default panel-tabs-pills">
+					<div class="panel-heading">
+						<ul class="nav nav-pills">
+							<li class="active">
+								<a data-toggle="pill" href="#moi_update" ng-click="clickUpdate()"><strong>Mới Update</strong></a>
+							</li>
+							<li>
+								<a data-toggle="pill" href="#hot_update" ng-click="clickHot()"><strong>Hot Update</strong></a>
+							</li>
+							<li>
+								<a data-toggle="pill" href="#moi_dang" ng-click="clickNew()"><strong>Mới Đăng</strong></a>
+							</li>
+						</ul>
+					</div>
+					<div class="panel-body">
+						<div class="tab-content">
+							<div id="moi_update" class="tab-pane fade in active">
+								<p>{{Update}}</p>
+								<div class = "item_center" ng-repeat="post in postsUpdate">
+									<%- include('includes/item_post.ejs')%>
+								</div>
+								<div class = "button-page">
+									<a href="/danh-sach/moi-update" class="btn btn-info pull-right" role="button">
+										Xem tiếp
+									</a>
+								</div>
+							</div>
+							<div id="hot_update" class="tab-pane fade">
+								<div class = "item_center" ng-repeat="post in postsHot">
+									<%- include('includes/item_post.ejs')%>
+								</div>
+								<div class = "button-page">
+									<a href="/danh-sach/hot-update" class="btn btn-info pull-right" role="button">
+										Xem tiếp
+									</a>
+								</div>
+							</div>
+							<div id="moi_dang" class="tab-pane fade">
+								<div class = "item_center" ng-repeat="post in postsNew">
+									<%- include('includes/item_post.ejs')%>
+								</div>
+								<div class = "button-page">
+									<a href="/danh-sach/moi-dang" class="btn btn-info pull-right" role="button">
+										Xem tiếp
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div><!-- end box center-->
+				<%- include('includes/box-right.ejs')%>
+			</div>
+			
+			<!-- Controllers -->
+			<script src="/js/Controller/postController.js"></script>
+			<script src="/js/Controller/randomController.js"></script>
+			<script src="/js/Controller/genresController.js"></script>
+			<!-- Filters -->
+			<script src="/js/Filters/slugFilter.js"></script>
+			<!-- Tooltip -->
+			
+			
+		</body>
+	</html>
