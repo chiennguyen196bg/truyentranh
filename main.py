@@ -14,7 +14,7 @@ from crawlList import crawl_list_urls
 client = MongoClient('mongodb://localhost:27017/')
 db = client.test
 
-for i in range(1,2):
+for i in range(1,54):
 	urlList = 'http://truyentranhmoi.com/danh-sach/page/%d/' % i
 	listUrlPage = crawl_list_urls(urlList)
 	print i
