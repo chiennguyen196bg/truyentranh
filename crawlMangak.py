@@ -34,15 +34,17 @@ def crawl_chapter(url):
 		if response.status_code == 200: # Response Code  
 			chap = {}
 			parsed_body = html.fromstring(response.text)
-
+			try:
 			# lay tieu de
-			word = parsed_body.xpath('//*[@id="trang_doc"]/div[@class="hentry"]/h1/text()')
-			chap['name'] = word[0]
-			chap['slug'] = slugify(chap['name'])
-			chap['content'] = parsed_body.xpath('//div[@class="vung_doc"]/img/@src')
-			chap['_id'] = time.time()
-			db.chap.insert_one(chap)
-			return (chap['name'], chap['_id'], chap['slug'])
+				word = parsed_body.xpath('//*[@id="trang_doc"]/div[@class="hentry"]/h1/text()')
+				chap['name'] = word[0]
+				chap['slug'] = slugify(chap['name'])
+				chap['content'] = parsed_body.xpath('//div[@class="vung_doc"]/img/@src')
+				chap['_id'] = time.time()
+				db.chap.insert_one(chap)
+				return (chap['name'], chap['_id'], chap['slug'])
+			except:
+				pass
 		else:
 			print "Error:", url
 
@@ -57,44 +59,49 @@ def crawl_title(url, hot = False):
 		if response.status_code == 200: # Response Code  
 			item = {}
 			parsed_body = html.fromstring(response.text)
-			
-			item['name'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[1]/h1/text()')
-			if item['name'] == []:
-				item['name'] = 'null'
-			else:
-				item['name'] = item['name'][0]
-			item['slug'] = slugify(item['name'])
-			# lay img thumb
-			item['thumb'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/div/span[1]/img/@src')[0]
 			try:
-				imgData = ab.open(item['thumb']).read()
+				item['name'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[1]/h1/text()')
+				if item['name'] == []:
+					item['name'] = 'null'
+				else:
+					item['name'] = item['name'][0]
+				item['slug'] = slugify(item['name'])
+				# lay img thumb
+				try:
+					item['thumb'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/div/span[1]/img/@src')[0]
+					try:
+						imgData = ab.open(item['thumb']).read()
+					except:
+						f = open('public/urlerrthumb.txt','a',0)
+						f.write(item['thumb']+'\n')
+						f.close()
+					else:
+						f = open('public/images/'+item['slug']+'.jpg', 'wb')
+						f.write(imgData)
+						f.close()
+				except:
+					pass
+				
+				item['hot'] = hot
+				item['author'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[2]/a/text()')
+				item['genres'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[3]/a/text()')
+				item['status'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[4]/a/text()')[0]
+
+				item['summary'] = parsed_body.xpath('/html/head/meta[10]/@content')[0]
+				if(item['summary'].find('Mangak.net') != -1):
+					item['summary'] = ''
+
+				item['chapter'] = []
+				list_chap = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[2]/div[2]/div/span[1]/a/@href')
+				list_chap = list_chap[::-1]
+				for urlchap in list_chap:
+					(chap_name, chap_id, chap_slug) = crawl_chapter(urlchap)
+					chap = {'name': chap_name, 'id': chap_id, 'slug': chap_slug}
+					item['chapter'].append(chap)
+				item['lastChap'] = item['chapter'][len(item['chapter'])-1]
+				return db.truyen.insert_one(item).inserted_id
 			except:
-				f = open('public/urlerrthumb.txt','a',0)
-				f.write(item['thumb']+'\n')
-				f.close()
-			else:
-				f = open('public/images/'+item['slug']+'.jpg', 'wb')
-				f.write(imgData)
-				f.close()
-			
-			item['hot'] = hot
-			item['author'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[2]/a/text()')
-			item['genres'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[3]/a/text()')
-			item['status'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[4]/a/text()')[0]
-
-			item['summary'] = parsed_body.xpath('/html/head/meta[10]/@content')[0]
-			if(item['summary'].find('Mangak.net') != -1):
-				item['summary'] = ''
-
-			item['chapter'] = []
-			list_chap = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[2]/div[2]/div/span[1]/a/@href')
-			list_chap = list_chap[::-1]
-			for urlchap in list_chap:
-				(chap_name, chap_id, chap_slug) = crawl_chapter(urlchap)
-				chap = {'name': chap_name, 'id': chap_id, 'slug': chap_slug}
-				item['chapter'].append(chap)
-			item['lastChap'] = item['chapter'][len(item['chapter'])-1]
-			return db.truyen.insert_one(item).inserted_id
+				pass
 			
 		else:
 			print "Error:", url
