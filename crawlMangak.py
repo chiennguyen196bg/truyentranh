@@ -58,7 +58,11 @@ def crawl_title(url, hot = False):
 			item = {}
 			parsed_body = html.fromstring(response.text)
 			
-			item['name'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[1]/h1/text()')[0]
+			item['name'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[1]/h1/text()')
+			if item['name'] == []:
+				item['name'] = 'null'
+			else:
+				item['name'] = item['name'][0]
 			item['slug'] = slugify(item['name'])
 			# lay img thumb
 			item['thumb'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/div/span[1]/img/@src')[0]
