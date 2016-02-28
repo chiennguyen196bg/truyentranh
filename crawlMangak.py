@@ -19,7 +19,7 @@ ab = mech.anonBrowser(proxies=[],\
 import pymongo
 from pymongo import MongoClient
 client = MongoClient('mongodb://localhost:27017/')
-db = client.test
+db = client.admin
 
 
 def crawl_chapter(url):
@@ -187,6 +187,6 @@ if __name__ == '__main__':
 						db.truyen.replace_one({'_id': result['_id']}, result)
 				print x
 		print 'I will sleep!'
-		time.sleep(60)				
+		time.sleep(900)				
 	# url = 'http://mangak.net/toriko/'
 	# crawl_title(url)

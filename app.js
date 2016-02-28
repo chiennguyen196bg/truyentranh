@@ -20,7 +20,7 @@ app.set('views','./src/views');
 app.set('view engine', 'ejs');
 
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/admin');
 
 // Khởi tạo đối tượng connection để test kết nối
 var dbMongo = mongoose.connection;

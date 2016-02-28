@@ -21,7 +21,7 @@ ab = mech.anonBrowser(proxies=[],\
 	
 # db = get_db()
 client = MongoClient('mongodb://localhost:27017/')
-db = client.test
+db = client.admin
 # add document
 
 def crawl_chapter(url):
