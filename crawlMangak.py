@@ -160,8 +160,9 @@ if __name__ == '__main__':
 			f.close()
 			first_slug = slugify(first_slug)
 			#Response body
-			response = requests.get(url)
-			parsed_body = html.fromstring(response.text)
+
+			response = ab.open(url).read()
+			parsed_body = html.fromstring(response)
 
 			#first_manga
 			item = lay_name(1)
