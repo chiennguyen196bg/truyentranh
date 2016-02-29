@@ -21,6 +21,7 @@ for i in range(1,54):
 	for url in listUrlPage:
 		info = crawl_title(url)
 		print info
+		time.sleep(10)
 		
 		
 print "Done"

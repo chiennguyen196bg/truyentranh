@@ -26,5 +26,5 @@ class anonBrowser(mechanize.Browser):
 		self.change_user_agent()
 		self.change_proxy()
 		if sleep:
-			time.sleep(0)
+			time.sleep(10)
 		

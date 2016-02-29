@@ -182,20 +182,23 @@ if __name__ == '__main__':
 					if result == None:
 						crawl_title(item['link'], hot = item['hot'])
 					else:
-						result['hot'] = item['hot']
-						chap_added = lay_list_chap(x)
-						length_chapter = len(result['chapter'])
-						index = length_chapter - 1
-						while index > -1:
-							if result['chapter'][index]['slug'] == chap_added[0]['slug']:
-								break
-							index = index - 1
-						else:
-							index = length_chapter
-						del_chap_from_list(result['chapter'][index:])
-						result['chapter'] = result['chapter'][0:index] + chap_added
-						result['lastChap'] = result['chapter'][len(result['chapter']) - 1]
-						db.truyen.replace_one({'_id': result['_id']}, result)
+						try:
+							result['hot'] = item['hot']
+							chap_added = lay_list_chap(x)
+							length_chapter = len(result['chapter'])
+							index = length_chapter - 1
+							while index > -1:
+								if result['chapter'][index]['slug'] == chap_added[0]['slug']:
+									break
+								index = index - 1
+							else:
+								index = length_chapter
+							del_chap_from_list(result['chapter'][index:])
+							result['chapter'] = result['chapter'][0:index] + chap_added
+							result['lastChap'] = result['chapter'][len(result['chapter']) - 1]
+							db.truyen.replace_one({'_id': result['_id']}, result)
+						except:
+							pass
 				print x
 		print 'I will sleep!'
 		time.sleep(900)				
