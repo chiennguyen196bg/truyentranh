@@ -32,13 +32,15 @@ var router = function(){
 		});
 	router_json.route('/get-all-genres')
 		.get(function(req, res){
-			Post.distinct('genres', function(err, results){
-				if(err){
-		            res.send('err');
-		        } else {
-		            res.json(results);
-		        }
-			});
+			Post.distinct('genres')
+				.sort() 
+				.exec(function(err, results){
+					if(err){
+			            res.send('err');
+			        } else {
+			            res.json(results);
+			        }
+				});
 		});	
 	router_json.route('/find-post-by-chap/:chap_slug')
 	.get(function(req, res){

@@ -78,7 +78,7 @@
 						<%for(var i=chap.length -1 ; i>=0; i--){%>
 						<p><a href="/doc-truyen/<%=chap[i].slug%>"><%=chap[i].name%></a>
 							<%myDate = new Date(1000*chap[i].id);%>
-							<span class="pull-right" style="margin:0 3px;"><%-myDate.toLocaleDateString("vn-VN")%></span>
+							<span class="pull-right" style="margin:0 3px;"><%-myDate.toLocaleDateString("vn-VN").format('DD/MM/YYYY')%></span>
 						</p>
 						<%}%>
 					</div>
