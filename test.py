@@ -189,6 +189,7 @@ def main():
 	del list_items
 
 if __name__ == '__main__':
+	gc.enable()
 	while True:
 		main()
 		print ("Everythings is Done! I will sleep!")
