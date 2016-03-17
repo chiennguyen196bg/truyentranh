@@ -176,6 +176,7 @@ def main():
 			del_chap_from_list(result['chapter'][index:])
 			result['chapter'] = result['chapter'][0:index] + chap_added
 			del chap_added
+			del index
 			result['lastChap'] = result['chapter'][len(result['chapter']) - 1]
 			db.truyen.replace_one({'_id': result['_id']}, result)
 		print item['slug']
@@ -185,8 +186,8 @@ def main():
 			f.close()
 			del item
 			del result
-		gc.collect()
 	del list_items
+	gc.collect()
 
 if __name__ == '__main__':
 	gc.enable()
