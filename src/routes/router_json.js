@@ -43,30 +43,44 @@ var router = function(){
 				});
 		});	
 	router_json.route('/find-post-by-chap/:chap_slug')
-	.get(function(req, res){
-		Post.findOne({'chapter.slug': req.params.chap_slug})
-		.select('chapter name slug')
-		.exec(function(err, post){
-            if(err){
-                res.send('err');
-            } else {
-                res.json(post);
-            }
-        });
-	        
-	});	
+		.get(function(req, res){
+			Post.findOne({'chapter.slug': req.params.chap_slug})
+			.select('chapter name slug')
+			.exec(function(err, post){
+	            if(err){
+	                res.send('err');
+	            } else {
+	                res.json(post);
+	            }
+	        });
+		        
+		});	
 	router_json.route('/search/:data')
-	.get(function(req, res){
-		Post.find({$text:{$search: req.params.data}})
-		.exec(function(err, post){
-            if(err){
-                res.send('err');
-            } else {
-                res.json(post);
-            }
-        });
-	        
-	});	
+		.get(function(req, res){
+			Post.find({$text:{$search: req.params.data}})
+			.exec(function(err, post){
+	            if(err){
+	                res.send('err');
+	            } else {
+	                res.json(post);
+	            }
+	        });
+		        
+		});	
+
+	router_json.route('/new-post/:num')
+		.get(function(req, res){
+			var num = Number(req.params.num);
+			Post.find({}).limit(num)
+		        .sort({'id' : -1})
+		        .exec(function(err, posts){
+		            if(err){
+		                res.send('err');
+		            } else {
+		                res.json(posts);
+		            }
+		        });
+		});
 	
 	return router_json;
 }
