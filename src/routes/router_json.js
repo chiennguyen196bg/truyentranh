@@ -40,7 +40,6 @@ var router = function(){
 					if(err){
 			            res.send('err');
 			        } else {
-			        	results = results.sort();
 			            res.json(results);
 			        }
 				});

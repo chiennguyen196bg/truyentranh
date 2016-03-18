@@ -2,6 +2,7 @@ app.controller('genresController', function($scope, $http) {
 	$http.get("/json/get-all-genres")
     .then(function(response) {
         $scope.itemGenres = response.data;
+        $scope.itemGenres = $scope.itemGenres.sort();
         var len = response.data.length;
         $scope.itemGenres1 = [];
         var temp = [];
