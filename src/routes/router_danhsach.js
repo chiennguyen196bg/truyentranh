@@ -27,11 +27,17 @@ var convert = function(text){
 			arg : '-id',
 			realName : "Mới đăng"
 		}
-	else if (text == 'top-view')
+	else if (text == 'hot-update')
 		return {
 			arg : '-views',
 			realName : "Hot update"
 		}
+	else{
+		return {
+			arg : '-id',
+			realName : text
+		}
+	}
 	
 };
 
