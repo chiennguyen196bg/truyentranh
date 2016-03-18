@@ -21,7 +21,7 @@ app.controller('postController', function($scope, $http) {
 	};
 
 	$scope.clickNew = function(){
-		$http.get("/json/moi-update/20")
+		$http.get("/json/moi-dang/20")
     	.then(function(response) {
         	$scope.postsNew = response.data;
     	});
