@@ -35,7 +35,7 @@ var router = function(){
 		.get(function(req, res){
 			var num = Number(req.params.num);
 			Post.find({}).limit(num)
-		        .sort('-id')
+		        .sort('-lastChap.id')
 		        .exec(function(err, posts){
 		            if(err){
 		                res.send('err');
