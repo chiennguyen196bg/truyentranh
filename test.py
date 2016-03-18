@@ -78,13 +78,15 @@ def crawl_title(url):
 			try:
 				imgData = ab.open(item['thumb']).read()
 			except:
-				f = open('public/urlerrthumb.txt','a',0)
-				f.write(item['thumb']+'\n')
-				f.close()
+				print "khong lay duoc thumb"
 			else:
-				f = open('public/images/'+item['slug']+'.jpg', 'wb', 0)
-				f.write(imgData)
-				f.close()
+				try:
+					f = open('public/images/'+item['slug']+'.jpg', 'wb', 0)
+					f.write(imgData)
+				except Exception, e:
+					print e
+				finally:
+					f.close()
 			
 			item['author'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[2]/a/text()')
 			item['genres'] = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[3]/a/text()')
@@ -194,7 +196,6 @@ if __name__ == '__main__':
 	while True:
 		main()
 		print ("Everythings is Done! I will sleep!")
-		gc.collect()
 		time.sleep(1200)
 
 		
