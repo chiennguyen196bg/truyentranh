@@ -31,11 +31,11 @@ var router = function(){
 		        });
 		});
 
-	router_json.route('/new-update/:num')
+	router_json.route('/moi-dang/:num')
 		.get(function(req, res){
 			var num = Number(req.params.num);
 			Post.find({}).limit(num)
-		        .sort('-lastChap.id')
+		        // .sort('-lastChap.id')
 		        .exec(function(err, posts){
 		            if(err){
 		                res.send('err');
