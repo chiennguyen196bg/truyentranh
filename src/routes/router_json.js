@@ -72,8 +72,8 @@ var router = function(){
 		.get(function(req, res){
 			var num = Number(req.params.num);
 			Post.find({})
-				.sort({'id' : -1})
-				// .limit(num)
+				.sort("-id")
+				.limit(num)
 		        .exec(function(err, posts){
 		            if(err){
 		                res.send('err');
