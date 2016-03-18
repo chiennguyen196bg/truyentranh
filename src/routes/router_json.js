@@ -31,7 +31,7 @@ var router = function(){
 		        });
 		});
 
-	router_json.route('/new-post/:num')
+	router_json.route('/post/:num')
 		.get(function(req, res){
 			var num = Number(req.params.num);
 			Post.find({}).limit(num)
@@ -48,12 +48,11 @@ var router = function(){
 	router_json.route('/get-all-genres')
 		.get(function(req, res){
 			Post.distinct('genres')
-				.sort()
 				.exec(function(err, results){
 					if(err){
 			            res.send('err');
 			        } else {
-			            res.json(results);
+			            res.json(results.sort());
 			        }
 				});
 		});	
