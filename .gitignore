@@ -5,5 +5,5 @@ node_modules/ejs
 node_modules/express
 node_modules/mongoose
 node_modules/slug
-public/images
+
 first_slug.txt
