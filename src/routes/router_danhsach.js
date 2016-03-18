@@ -28,7 +28,10 @@ var convert = function(text){
 			realName : "Mới đăng"
 		}
 	else if (text == 'top-view')
-		return '-views'
+		return {
+			arg : '-views',
+			realName : "Hot update"
+		}
 	
 };
 
