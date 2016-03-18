@@ -31,6 +31,19 @@ var router = function(){
 		        });
 		});
 
+	router_json.route('/new-update/:num')
+		.get(function(req, res){
+			var num = Number(req.params.num);
+			Post.find({}).limit(num)
+		        .sort('-lastChap.id')
+		        .exec(function(err, posts){
+		            if(err){
+		                res.send('err');
+		            } else {
+		                res.json(posts);
+		            }
+		        });
+		});
 	
 
 	router_json.route('/get-all-genres')
