@@ -31,19 +31,7 @@ var router = function(){
 		        });
 		});
 
-	router_json.route('/post/:num')
-		.get(function(req, res){
-			var num = Number(req.params.num);
-			Post.find({}).limit(num)
-		        .sort('-lastChap.id')
-		        .exec(function(err, posts){
-		            if(err){
-		                res.send('err');
-		            } else {
-		                res.json(posts);
-		            }
-		        });
-		});
+	
 
 	router_json.route('/get-all-genres')
 		.get(function(req, res){
@@ -52,7 +40,8 @@ var router = function(){
 					if(err){
 			            res.send('err');
 			        } else {
-			            res.json(results.sort());
+			        	results = results.sort();
+			            res.json(results);
 			        }
 				});
 		});	
