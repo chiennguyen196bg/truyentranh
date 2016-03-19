@@ -8,6 +8,12 @@
 		<meta name="keywords" content="<%=chap.name%>, <%=chap.name%> tiếng việt, đọc truyện <%=chap.name%>, truyen tranh, truyen tranh online">
 		<meta name="description" content="Đọc truyện tranh <%=chap.name%> Tiếng Việt được cập nhật sớm nhất chỉ có tại website đọc truyện tranh siêu nhanh Truyen47.com" />
 
+		<meta property="og:url"           content="http://truyen47.com/doc-truyen/<%=chap.slug%>" />
+		<meta property="og:type"          content="book" />
+		<meta property="og:title"         content="<%=chap.name%>" />
+		<meta property="og:description"   content="<%=post.summary%>" />
+		<meta property="og:image"         content="http://truyen47.com/images/<%=post.name%>.jpg" />
+
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/css/stylesheet.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -132,7 +138,7 @@
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<div class="fb-comments" data-href="https://truyen47.com/<%=chap.slug%>" data-numposts="10" width="100%"></div>
+						<div class="fb-comments" data-href="https://truyen47.com/doc-truyen/<%=chap.slug%>" data-numposts="10" width="100%"></div>
 					</div>
 				</div>
 			</div>
