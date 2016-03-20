@@ -13,15 +13,17 @@
 			<div class="tab-content">
 				<div id="top_tuan" class="tab-pane fade in active">
 					<div class="item_right" ng-repeat="item in itemTopTuan">
-						<a ng-href="/{{item.slug}}">
+						<a ng-href="/{{item.slug}}" title="{{item.name}}">
 							<img height="50px" width="50px" ng-src="/images/{{item.slug}}.jpg" alt="{{item.name}} - Truyen47.com">
 						</a>
-						<a ng-href="/{{item.slug}}">
-							<h5>{{item.name}}</h5>
-						</a>
-						<span>
-							<a ng-href="/doc-truyen/{{item.lastChap.slug}}">{{item.lastChap.name}}</a>
-						</span>
+						<div style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">
+							<a ng-href="/{{item.slug}}" title="{{item.name}}">
+								<h5 style="text-overflow: ellipsis; white-space: nowrap;overflow: hidden">{{item.name}}</h5>
+							</a>
+							<span>
+								<a ng-href="/doc-truyen/{{item.lastChap.slug}}" title="{{item.lastChap.name}}">{{item.lastChap.name}}</a>
+							</span>
+						</div>
 					</div>
 					
 					<div class = "button-page">
@@ -32,16 +34,17 @@
 				</div>
 				<div id="top_thang" class="tab-pane fade">
 					<div class="item_right" ng-repeat="item in itemTopThang">
-						<a ng-href="/{{item.slug}}">
+						<a ng-href="/{{item.slug}}" title="{{item.name}}">
 							<img height="50px" width="50px" ng-src="/images/{{item.slug}}.jpg" alt="{{item.name}} - Truyen47.com">
 						</a>
-						<a ng-href="/{{item.slug}}">
-							<h5>{{item.name}}</h5>
-						</a>
-						<span>
-							<a ng-href="/doc-truyen/{{item.lastChap.slug}}">{{item.lastChap.name}}</a>
-						</span>
-						</span>
+						<div style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">
+							<a ng-href="/{{item.slug}}" title="{{item.name}}">
+								<h5 style="text-overflow: ellipsis; white-space: nowrap;overflow: hidden">{{item.name}}</h5>
+							</a>
+							<span>
+								<a ng-href="/doc-truyen/{{item.lastChap.slug}}" title="{{item.lastChap.name}}">{{item.lastChap.name}}</a>
+							</span>
+						</div>
 					</div>
 					
 					<div class = "button-page">
@@ -57,7 +60,7 @@
 		<div class="panel-heading"><strong>Truyện Mới Đăng</strong></div>
 		<div class="panel-body">
 			<div class="item_new col-sm-4" ng-repeat="item in itemNew">
-				<a ng-href="{{item.name | slug}}">
+				<a ng-href="{{item.name | slug}}" title="{{item.name}}">
 					<img ng-src="/images/{{item.slug}}.jpg" alt="{{item.name}} - Truyen47.com">
 				</a>
 			</div>
