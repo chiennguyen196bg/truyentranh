@@ -10,7 +10,10 @@ var router = function(){
 		.get(function(req, res){
 			Post.count().exec(function(err, count){
 				var random = Math.floor(Math.random()*count);
-				Post.findOne().skip(random).exec(function(err, post){
+				Post.findOne()
+				.skip(random)
+				.select('name slug lastChap summary genres')
+				.exec(function(err, post){
 					res.json(post);
 				})
 			})
@@ -22,6 +25,7 @@ var router = function(){
 			var num = Number(req.params.num);
 			Post.find({}).limit(num)
 		        .sort('-lastChap.id')
+		        .select('name slug lastChap genres')
 		        .exec(function(err, posts){
 		            if(err){
 		                res.send('err');
@@ -36,6 +40,7 @@ var router = function(){
 			var num = Number(req.params.num);
 			Post.find().limit(num)
 			.sort({'_id': -1})
+			.select('name slug lastChap genres')
 			.exec(function(err, posts){
 				if(err){
 					res.send('err');
