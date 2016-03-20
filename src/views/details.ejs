@@ -67,7 +67,10 @@
 								</button>
 							</p>
 							<div id="demo" class="collapse in">
-								<%=post.summary%>
+								<p><%=post.summary%></p>
+								<%if (post.summary == ""){%>
+									<p>Truyện tranh <strong><%=post.name%></strong> nội dung đang được cập nhật . Ghé thăm Truyen47.com để được đọc các chương mới nhất của <strong><%=post.name%></strong></p>
+								<%};%>
 							</div>
 						</div>
 						

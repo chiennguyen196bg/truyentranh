@@ -44,6 +44,9 @@
 						<p>Thể loại: <span ng-repeat="genre in itemRandom.genres"><a ng-href="/danh-sach/the-loai/{{genre | slug}}"> {{genre}}</a></span></p>
 						<p>Nội dung: <br></p>
 						<p>{{itemRandom.summary}}</p>
+						<%if (itemRandom.summary == ""){%>
+							<p>Truyện tranh <strong><%=itemRandom.name%></strong> nội dung đang được cập nhật . Ghé thăm Truyen47.com để được đọc các chương mới nhất của <strong><%=itemRandom.name%></strong></p>
+						<%};%>
 						<p><a ng-href="/doc-truyen/{{itemRandom.lastChap.name | slug}}">{{itemRandom.lastChap.name}}</a></p>
 					</div>
 				</div>
