@@ -14,7 +14,7 @@
 				<div id="top_tuan" class="tab-pane fade in active">
 					<div class="item_right" ng-repeat="item in itemTopTuan">
 						<a ng-href="/{{item.slug}}" title="{{item.name}}">
-							<img height="50px" width="50px" ng-src="/images/{{item.slug}}.jpg" alt="{{item.name}} - Truyen47.com">
+							<img height="50px" width="50px" ng-src="/public/images/{{item.slug}}.jpg" alt="{{item.name}} - Truyen47.com">
 						</a>
 						<div style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">
 							<a ng-href="/{{item.slug}}" title="{{item.name}}">
@@ -35,7 +35,7 @@
 				<div id="top_thang" class="tab-pane fade">
 					<div class="item_right" ng-repeat="item in itemTopThang">
 						<a ng-href="/{{item.slug}}" title="{{item.name}}">
-							<img height="50px" width="50px" ng-src="/images/{{item.slug}}.jpg" alt="{{item.name}} - Truyen47.com">
+							<img height="50px" width="50px" ng-src="/public/images/{{item.slug}}.jpg" alt="{{item.name}} - Truyen47.com">
 						</a>
 						<div style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">
 							<a ng-href="/{{item.slug}}" title="{{item.name}}">
@@ -61,12 +61,12 @@
 		<div class="panel-body">
 			<div class="item_new col-sm-4" ng-repeat="item in itemNew">
 				<a ng-href="{{item.name | slug}}" title="{{item.name}}">
-					<img ng-src="/images/{{item.slug}}.jpg" alt="{{item.name}} - Truyen47.com">
+					<img ng-src="/public/images/{{item.slug}}.jpg" alt="{{item.name}} - Truyen47.com">
 				</a>
 			</div>
 		</div>
 	</div>
 	</div><!--box right-->
 	<!-- Controller -->
-	<script src="/js/Controller/topViewController.js"></script>
-	<script src="/js/Controller/newPostController.js"></script>
+	<script src="/public/js/Controller/topViewController.js"></script>
+	<script src="/public/js/Controller/newPostController.js"></script>
