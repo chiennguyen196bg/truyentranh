@@ -41,8 +41,8 @@
 							<a ng-href="/{{itemRandom.slug}}"><img ng-src="/public/images/{{itemRandom.slug}}.jpg" width="100%"></a>
 						</div>
 						<h4><a ng-href="/{{itemRandom.slug}}">{{itemRandom.name}}</a></h4>
-						<p>Thể loại: <span ng-repeat="genre in itemRandom.genres">
-							<a ng-href="/danh-sach/the-loai/{{genre | slug}}"> {{genre}} - </a></span></p>
+						<p style="padding:3px;">Thể loại: <span ng-repeat="genre in itemRandom.genres">
+							<a ng-href="/danh-sach/the-loai/{{genre | slug}}">{{genre}}</a> - </span></p>
 						<p>Nội dung: <br></p>
 						<p>{{itemRandom.summary}}</p>
 						
