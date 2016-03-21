@@ -40,7 +40,7 @@ dbMongo.once('open', function(){
 // };
 
 
-var port = process.env.PORT || 80;
+var port = process.env.PORT || 8080;
 
 
 var router_doctruyen = require('./src/routes/router_doctruyen')();
