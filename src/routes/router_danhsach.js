@@ -19,22 +19,32 @@ var reslug = function(text){
 var convert = function(text){
 	if (text == 'moi-update')
 		return {
-			arg :'-lastChap.id',
+			find : {},
+			sort :'-lastChap.id',
 			realName : 'Mới cập nhập'
 		}
 	else if (text == 'moi-dang')
 		return {
-			arg : '-id',
+			find : {},
+			sort : '-id',
 			realName : "Mới đăng"
 		}
 	else if (text == 'hot-update')
 		return {
-			arg : '-views',
+			find : {},
+			sort : '-views',
 			realName : "Hot update"
+		}
+	else if (text == 'hoan-thanh')
+		return {
+			find : {'status':"Hoàn thành"},
+			sort : '-id',
+			realName : "Hoàn thành"
 		}
 	else{
 		return {
-			arg : '-id',
+			find : {},
+			sort : '-id',
 			realName : text
 		}
 	}
@@ -88,9 +98,9 @@ var router = function(){
 		.get(function(req, res){
 			var name = req.params.name;
 			var resultConvert = convert(name);
-			Post.find()
+			Post.find(resultConvert.find)
 			.limit(15)
-			.sort(resultConvert.arg)
+			.sort(resultConvert.sort)
 			.select('name genres lastChap.name lastChap.id thumb lastChap.date _id slug lastChap.slug')
 			.exec(function(err, post){
 				if (err) {
@@ -107,10 +117,10 @@ var router = function(){
 			var name = req.params.name;
 			var num = Number(req.params.num);
 			var resultConvert = convert(name);
-			Post.find()
+			Post.find(resultConvert.find)
 			.skip((num -1)*15)
 			.limit(15)
-			.sort(resultConvert.arg)
+			.sort(resultConvert.sort)
 			.select('name genres lastChap.name lastChap.id thumb lastChap.date _id slug lastChap.slug')
 			.exec(function(err, post){
 				if (err) {
