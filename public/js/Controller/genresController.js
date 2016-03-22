@@ -1,5 +1,5 @@
 app.controller('genresController', function($scope, $http) { 
-	$http.get("/json/get-all-genres")
+	$http.get("/json/get-all-genres", {cache : true})
     .then(function(response) {
         $scope.itemGenres = response.data;
         $scope.itemGenres = $scope.itemGenres.sort();
