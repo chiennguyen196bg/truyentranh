@@ -5,7 +5,7 @@
 				<strong>Truyện Theo Dõi</strong>
 				<button class="pull-right" ng-click="showFollowedList()">Show</button>
 			</div>
-			<div class="panel-body" max-height="400px;">
+			<div class="panel-body" style="max-height: 400px; overflow: auto;">
 				<div class="item_right" ng-repeat="item in followedList">
 					<div style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">
 						<a ng-href="/{{item.slug}}" title="{{item.name}}">
