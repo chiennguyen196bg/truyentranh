@@ -30,7 +30,7 @@ def crawl_chapter(url):
 	for i in xrange(0, 4):
 		try:
 			response = requests.get(url)
-			parsed_body = html.fromstring(response.txt)
+			parsed_body = html.fromstring(response.text)
 			word = parsed_body.xpath('//*[@id="trang_doc"]/div[@class="hentry"]/h1/text()')
 			if word == []:
 				raise NameError, "Khong lay duoc info chap"
@@ -58,7 +58,7 @@ def crawl_title(url):
 	for x in xrange(1, 4):
 		try:
 			response = requests.get(url)
-			parsed_body = html.fromstring(response.txt)
+			parsed_body = html.fromstring(response.text)
 			check = parsed_body.xpath('//*[@id="main_body"]/div[2]/div/div[2]/div[1]/div[1]/ul/li[1]/h1/text()')
 			if check == []:
 				raise NameError, "Khong lay duoc info truyen"
@@ -131,8 +131,8 @@ def main():
 
 	try:
 		# response = ab.open('http://mangak.net').read()
-		response = requests.get('http://mangak.net')
-		parsed_body = html.fromstring(response.txt)
+		response = requests.get('mangak.net')
+		parsed_body = html.fromstring(response.text)
 		check = parsed_body.xpath('//*[@id="main_body"]/div[3]/div[2]/div[1]/h3/a/text()')
 		if check == []:
 			raise NameError, "Notthing here"
