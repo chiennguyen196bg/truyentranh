@@ -11,8 +11,9 @@
 						<div style="display inline;">
 							<a ng-href="/{{item.slug}}" title="{{item.name}}">
 								<h5 style="text-overflow: ellipsis; white-space: nowrap;overflow: hidden">{{item.name}}</h5>
+								<button class="pull-right" ng-click="unfollow(item.slug)">Xóa</button>
 							</a>
-							<button class="pull-right" ng-click="unfollow(item.slug)">Xóa</button>
+							
 						</div>
 						<span>
 							<a ng-href="/doc-truyen/{{item.lastChap.slug}}" title="{{item.lastChap.name}}">{{item.lastChap.name}}</a>
