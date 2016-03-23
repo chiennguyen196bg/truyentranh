@@ -18,7 +18,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="truyen-theo-doi" class= "col-sm-12 col-md-12">
+	<div id="truyen-theo-doi" class= "col-sm-12 col-md-12" ng-controller="followListController">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<strong>Truyện Theo Dõi</strong>
@@ -44,4 +44,39 @@
 	
 	</div><!--box left-->
 	<!-- Controllers -->
-	<script src="/public/js/Controller/followListController.js"></script>
+	<script type="text/javascript">
+	app.controller("followListController", function($scope, $window, $http){
+		if(!($window.localStorage.followedItems)){
+			$window.localStorage.followedItems = "[]";
+		}
+
+		$scope.showFollowedList = function(){
+			if($window.localStorage.followedItems != "[]"){
+				var data = JSON.parse($window.localStorage.followedItems);
+				$http.post("/json/follow", {data : data}, {cache: true})
+					.then(function(response){
+						$scope.followedList = response.data;
+					});
+			}
+			else {
+				$window.alert("Khong co gi trong danh sach");
+			}
+		};
+
+		$scope.unfollow = function(slug){
+			$window.alert(slug);
+			$scope.tempList = JSON.parse($window.localStorage.followedItems);
+			var index = $scope.tempList.indexOf(slug);
+			if(index > -1){
+				$scope.tempList.splice(index, 1);
+				$window.localStorage.followedItems = JSON.stringify($scope.tempList);
+			}
+			for(var i = 0; i < $scope.followedList.length; i++){
+				if ($scope.followedList[i].slug == slug){
+					$scope.followedList.splice(i, 1);
+					break;
+				}
+			}
+		};
+	});
+	</script>
