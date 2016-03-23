@@ -131,7 +131,7 @@ def main():
 
 	try:
 		# response = ab.open('http://mangak.net').read()
-		response = requests.get('mangak.net')
+		response = requests.get('http://mangak.net')
 		parsed_body = html.fromstring(response.text)
 		check = parsed_body.xpath('//*[@id="main_body"]/div[3]/div[2]/div[1]/h3/a/text()')
 		if check == []:
