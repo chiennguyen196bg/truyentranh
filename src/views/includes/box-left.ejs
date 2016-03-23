@@ -3,20 +3,22 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<strong>Truyện Theo Dõi</strong>
-				<button class="btn btn-primary pull-right" ng-click="showFollowedList()" >Show</button>
+				<button class="pull-right" ng-click="showFollowedList()" >Show</button>
 			</div>
 			<div class="panel-body">
 				<div class="item_right" ng-repeat="item in followedList">
 					<div style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">
-						<div style="display:inline;">
-							<a ng-href="/{{item.slug}}" title="{{item.name}}">
-								<h5 style="text-overflow: ellipsis; white-space: nowrap;overflow: hidden">{{item.name}}</h5>
-							</a>
-							<button class="btn btn-danger pull-right" ng-click="unfollow(item.slug)">Xóa</button>
-						</div>
+						<a ng-href="/{{item.slug}}" title="{{item.name}}">
+							<h5 style="text-overflow: ellipsis; white-space: nowrap;overflow: hidden">{{item.name}}</h5>
+						</a>
+						
+						
 						<span>
 							<a ng-href="/doc-truyen/{{item.lastChap.slug}}" title="{{item.lastChap.name}}">{{item.lastChap.name}}</a>
 						</span>
+					</div>
+					<div class="pull-right">
+						<button class="btn btn-danger pull-right" ng-click="unfollow(item.slug)">Xóa</button>
 					</div>
 				</div>
 			</div>
