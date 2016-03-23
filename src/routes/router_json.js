@@ -86,6 +86,20 @@ var router = function(){
 	        });
 		        
 		});	
+	router_json.route("/follow")
+		.post(function(req, res){
+		var data = req.body.data;
+		console.log(data);
+		Post.find({"slug" : { $in : data } })
+			.select("name slug lastChap")
+			.exec( function(err, results){
+				if(err){
+	                res.send('err');
+	            } else {
+	                res.json(results);
+	            }
+			});
+		});
 
 
 	

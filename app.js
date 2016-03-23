@@ -62,7 +62,7 @@ app.use('/', router_doctruyen);
 
 app.listen(port, function(err){
 	console.log('runing server on port '+ port);
-})
+});
 // app.listen(port, function(err){
 // 	console.log('running server on port ' + port);
 // });
