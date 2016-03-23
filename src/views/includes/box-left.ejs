@@ -1,23 +1,4 @@
 <div class="col-sm-12 col-md-3 box left-box">
-	
-	<div id = "the-loai" class= "col-sm-6 col-md-12 hidden-sm hidden-xs">
-		<div  class="panel panel-default">
-			<div class="panel-heading"><strong>Thể loại</strong></div>
-			<div class="panel-body" ng-controller="genresController">
-				<div class="table-responsive">
-					<table class="table table-striped theloai">
-						<tbody>
-							<tr ng-repeat="itemtr in itemGenres1">
-								<td ng-repeat="item in itemtr">
-									<a href="/danh-sach/the-loai/{{item | slug}}">{{item}}</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div id="truyen-theo-doi" class= "col-sm-12 col-md-12" ng-controller="followListController">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -42,6 +23,26 @@
 		</div>
 	</div>
 	
+	<div id = "the-loai" class= "col-sm-6 col-md-12 hidden-sm hidden-xs">
+		<div  class="panel panel-default">
+			<div class="panel-heading"><strong>Thể loại</strong></div>
+			<div class="panel-body" ng-controller="genresController">
+				<div class="table-responsive">
+					<table class="table table-striped theloai">
+						<tbody>
+							<tr ng-repeat="itemtr in itemGenres1">
+								<td ng-repeat="item in itemtr">
+									<a href="/danh-sach/the-loai/{{item | slug}}">{{item}}</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 	</div><!--box left-->
 	<!-- Controllers -->
 	<script type="text/javascript">
@@ -59,12 +60,12 @@
 					});
 			}
 			else {
-				$window.alert("Khong co gi trong danh sach");
+				$window.alert("Bạn không theo dõi truyện nào!");
 			}
 		};
 
 		$scope.unfollow = function(slug){
-			$window.alert(slug);
+			$window.alert("Đã Xóa");
 			$scope.tempList = JSON.parse($window.localStorage.followedItems);
 			var index = $scope.tempList.indexOf(slug);
 			if(index > -1){
